@@ -2,7 +2,7 @@ from utils import Solution
 from typing import Any
 
 
-class Day1Solution(Solution):
+class DaySolution(Solution):
 
     def _parse_data(self, input_data: str) -> Any:
         return [int(x) for x in input_data.split("\n") if x]

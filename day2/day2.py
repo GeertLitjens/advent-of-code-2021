@@ -2,7 +2,7 @@ from utils import Solution
 from typing import Any
 
 
-class Day2Solution(Solution):
+class DaySolution(Solution):
     def __init__(self, day: int = 2, year: int = 2021) -> None:
         super().__init__(day, year)
 

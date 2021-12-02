@@ -1,5 +1,5 @@
 import pytest
-from day2.day2 import Day2Solution
+from day2.day2 import DaySolution
 
 
 @pytest.fixture
@@ -8,14 +8,14 @@ def day2_testdata():
 
 
 def test_part1(day2_testdata):
-    sol = Day2Solution()
+    sol = DaySolution()
     parsed_data = sol._parse_data(day2_testdata)
     result = sol._solve_part1(parsed_data)
     assert result == 150
 
 
 def test_part2(day2_testdata):
-    sol = Day2Solution()
+    sol = DaySolution()
     parsed_data = sol._parse_data(day2_testdata)
     result = sol._solve_part2(parsed_data)
     assert result == 900
