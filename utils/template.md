@@ -6,7 +6,7 @@ description: <page_description>
 
 ## <page_title>
 
-[Return to main page](././)
+[Return to main page](../../)
 
 <day_experience>
 
@@ -31,4 +31,4 @@ description: <page_description>
 <aoc_part2_code>
 ```
 
-[Return to main page](././)
+[Return to main page](../../)

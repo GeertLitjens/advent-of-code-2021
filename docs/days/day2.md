@@ -6,7 +6,7 @@ description: Python solution to day 2
 
 ## Day 2
 
-[Return to main page](././)
+[Return to main page](../../)
 
 
 Day 2 was also relatively straightforward, not much challenge up till now. The only stumbling block was that I first
@@ -115,4 +115,4 @@ def _solve_part2(self, parsed_data: Any) -> Any:
     return x * d
 ```
 
-[Return to main page](././)
+[Return to main page](../../)
