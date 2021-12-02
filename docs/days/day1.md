@@ -6,7 +6,7 @@ description: Python solution to day 1
 
 ## Day 1
 
-[Return to main page](./)
+[Return to main page](././)
 
 
 My solution for the first day of the new advent of code for 2021. As always, pretty easy and straightforward for this
@@ -123,4 +123,4 @@ def _solve_part2(self, parsed_data: Any) -> Any:
     return count_diff
 ```
 
-[Return to main page](./)
+[Return to main page](././)
