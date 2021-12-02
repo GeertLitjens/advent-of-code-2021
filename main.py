@@ -13,6 +13,7 @@ if __name__ == "__main__":
                         help="Run a specific set of days, default is all days")
     parser.add_argument('-p', '--part1', action="store_true", help="Only execute part 1 of the solutions")
     parser.add_argument('-s', '--submit', action="store_true", help="Submit answers to Advent of Code website")
+    parser.add_argument('-w', '--write', action="store_true", help="Generate MD files for GitHub pages from code")
     parser.add_argument('-v', '--verbose', action="store_true", help="Increase verbosity for debug purposes")
 
     args = parser.parse_args()
@@ -39,3 +40,5 @@ if __name__ == "__main__":
         solution.solve(args.part1)
         if args.submit:
             solution.submit()
+        if args.write:
+            solution.generate_day_md()

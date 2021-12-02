@@ -2,3 +2,4 @@
 My solutions to the Advent of Code 2021 in Python 
 
 * [Day 1](./days/day1.md)
+* [Day 2](./days/day2.md)
