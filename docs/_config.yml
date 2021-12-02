@@ -1,3 +1,4 @@
 theme: jekyll-theme-tactile
 title: "Geert's Advent of Code 2021 solutions in Python"
 description: "Trying to solve the Advent of Code puzzles and simultanousnly learn some modern Python techniques and toolchains."
+show_downloads: false
