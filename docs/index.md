@@ -31,7 +31,8 @@ toolchain and modern practices. This includes things:
 That way I hope to learn a lot of new Python things and learn to solve relevant programming problems at once!
 
 ## Solutions
-Here you can find my solutions for the different days:
+Here you can find my solutions (on [GitHub](https://github.com/GeertLitjens/advent-of-code-2021) as well)
+for the different days:
 
 * [Day 1](./days/day1.md)
 * [Day 2](./days/day2.md)
