@@ -36,7 +36,7 @@ class DaySolution(Solution):
         , we return the solution.
         """
         drawn_numbers, board_list = parsed_data
-        mask_list = [np.ones((5,5), dtype="byte") for x in range(len(board_list))]
+        mask_list = [np.ones((5, 5), dtype="byte") for _ in range(len(board_list))]
         for number in drawn_numbers:
             for board_index in range(len(board_list)):
                 mask_list[board_index][np.where(board_list[board_index] == number)] = 0
@@ -47,15 +47,13 @@ class DaySolution(Solution):
         """
         Part 2 is very similar to part one. The only difference is that we need to remove (blacklist) all the boards
         that have been completed, otherwise they will pop-up more often (because other rows or columns) complete. We do
-        not one to change the list we are iterating over in-place, so we blacklist the board index so we do not consider
-        it again once we have completed it once. After all numbers have been draw we simply return the last board that
-        was completed to solve part 2!
+        not want to change the list we are iterating over in-place, so we blacklist the board index, so we do not
+        consider it again once we have completed it once. After all numbers have been draw we simply return the
+        last board that was completed to solve part 2!
         """
         drawn_numbers, board_list = parsed_data
-        mask_list = [np.ones((5,5), dtype="byte") for x in range(len(board_list))]
-        last_board = None
-        last_mask = None
-        last_number = None
+        mask_list = [np.ones((5, 5), dtype="byte") for _ in range(len(board_list))]
+        last = None
         blacklist = []
         for number in drawn_numbers:
             for board_index in range(len(board_list)):
@@ -63,8 +61,6 @@ class DaySolution(Solution):
                     continue
                 mask_list[board_index][np.where(board_list[board_index] == number)] = 0
                 if (mask_list[board_index].sum(axis=0) == 0).any() or (mask_list[board_index].sum(axis=1) == 0).any():
-                    last_board = board_list[board_index]
-                    last_mask = mask_list[board_index]
-                    last_number = number
+                    last = (board_list[board_index] * mask_list[board_index]).sum() * number
                     blacklist.append(board_index)
-        return (last_board * last_mask).sum() * last_number
+        return last

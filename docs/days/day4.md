@@ -89,7 +89,7 @@ def _parse_data(self, input_data: str) -> Any:
 ```python
 def _solve_part1(self, parsed_data: tuple[list[int], list[np.ndarray]]) -> Any:
     drawn_numbers, board_list = parsed_data
-    mask_list = [np.ones((5,5), dtype="byte") for x in range(len(board_list))]
+    mask_list = [np.ones((5, 5), dtype="byte") for _ in range(len(board_list))]
     for number in drawn_numbers:
         for board_index in range(len(board_list)):
             mask_list[board_index][np.where(board_list[board_index] == number)] = 0
@@ -111,10 +111,8 @@ def _solve_part1(self, parsed_data: tuple[list[int], list[np.ndarray]]) -> Any:
 ```python
 def _solve_part2(self, parsed_data: tuple[list[int], list[np.ndarray]]) -> Any:
     drawn_numbers, board_list = parsed_data
-    mask_list = [np.ones((5,5), dtype="byte") for x in range(len(board_list))]
-    last_board = None
-    last_mask = None
-    last_number = None
+    mask_list = [np.ones((5, 5), dtype="byte") for _ in range(len(board_list))]
+    last = None
     blacklist = []
     for number in drawn_numbers:
         for board_index in range(len(board_list)):
@@ -122,11 +120,9 @@ def _solve_part2(self, parsed_data: tuple[list[int], list[np.ndarray]]) -> Any:
                 continue
             mask_list[board_index][np.where(board_list[board_index] == number)] = 0
             if (mask_list[board_index].sum(axis=0) == 0).any() or (mask_list[board_index].sum(axis=1) == 0).any():
-                last_board = board_list[board_index]
-                last_mask = mask_list[board_index]
-                last_number = number
+                last = (board_list[board_index] * mask_list[board_index]).sum() * number
                 blacklist.append(board_index)
-    return (last_board * last_mask).sum() * last_number
+    return last
 ```
 
 [Return to main page](../)
