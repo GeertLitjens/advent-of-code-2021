@@ -1,5 +1,5 @@
 import pytest
-from day1.day1 import DaySolution
+from day1.solution import DaySolution
 
 
 @pytest.fixture

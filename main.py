@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     logger.info("Started calculating solutions for days: " + str(days))
     for day_nr in days:
-        day_module = importlib.import_module("day" + str(day_nr) + ".day" + str(day_nr))
+        day_module = importlib.import_module("day" + str(day_nr) + ".solution")
         solution = day_module.DaySolution()
         solution.solve(args.part1)
         if args.submit:
