@@ -1,3 +1,4 @@
+## Dive!
 ### Part 1
 
 Now, you need to figure out how to pilot this thing.

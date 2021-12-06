@@ -15,12 +15,12 @@ class DaySolution(Solution):
         """
         return input_data
 
-    def _solve_part1(self, parsed_data: tuple[list[int], list[np.ndarray]]) -> Any:
+    def _solve_part1(self, parsed_data: Any) -> Any:
         """
         """
         return 1
 
-    def _solve_part2(self, parsed_data: tuple[list[int], list[np.ndarray]]) -> Any:
+    def _solve_part2(self, parsed_data: Any) -> Any:
         """
         """
         return 1

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Day 2
-description: Python solution to day 2
+description: Dive!
 ---
 
 ## Day 2

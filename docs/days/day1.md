@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Day 1
-description: Python solution to day 1
+description: Sonar Sweep
 ---
 
 ## Day 1

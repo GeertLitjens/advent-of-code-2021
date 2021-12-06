@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Day 5
-description: Python solution to day 5
+description: Hydrothermal Venture
 ---
 
 ## Day 5

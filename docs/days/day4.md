@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Day 4
-description: Python solution to day 4
+description: Giant Squid
 ---
 
 ## Day 4

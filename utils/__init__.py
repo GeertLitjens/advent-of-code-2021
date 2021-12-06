@@ -139,9 +139,9 @@ class Solution(ABC):
         day_readme_path = Path(__file__).parent / f"../day{self._day}/README.md"
         with open(day_readme_path, 'r') as file:
             day_text = file.readlines()
-        day_text = "".join(["> " + line for line in day_text[1:]])
+        page_description = day_text[0].replace("## ", "")
+        day_text = "".join(["> " + line for line in day_text[2:]])
         page_title = f"Day {self._day}"
-        page_description = f"Python solution to day {self._day}"
         aoc_parse_solution = " ".join([x.lstrip() for x in self._parse_data.__doc__.split("\n")])
         aoc_part1_solution = " ".join([x.lstrip() for x in self._solve_part1.__doc__.split("\n")])
         aoc_part2_solution = " ".join([x.lstrip() for x in self._solve_part2.__doc__.split("\n")])

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Day 3
-description: Python solution to day 3
+description: Binary Diagnostic
 ---
 
 ## Day 3
