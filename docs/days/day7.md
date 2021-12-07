@@ -12,7 +12,7 @@ description: Day 7: The Treachery of Whales
 
 Today was quite simple again, especially part 1. The key for part 1 was simply the realization that the median position
 will always cause the sum of distance to be lowest. Part 2 was a bit more tricky. I did realize that the distance
-for part 2 was simply the triangular number, defined as $rac{n * (n + 1)}rac{2}$. Then I first simply brute forced
+for part 2 was simply the triangular number, defined as n * (n + 1) / 2. Then I first simply brute forced
 the solution to find the smallest sum of distances, starting at the median. This gave me the correct answer, and then
 I spent a bit of time to implement a binary search to optimize the search time.
 
@@ -88,7 +88,7 @@ def _solve_part1(self, parsed_data: Any) -> Any:
 > 
 > Determine the horizontal position that the crabs can align to using the least fuel possible so they can make you an escape route! How much fuel must they spend to align to that position?
 
- Part 2 was a bit more tricky. I did know that the given definition of the new distance was a triangular number, for example $T_2 = 1 + 2$ and $T_4 = 1 + 2 + 3 + 4$. I couldn't think of a way to solve this analytically, so I wrote a simple brute force search, starting from the median point and then going higher. Later I replaced it with a binary search to make it more efficient. There might be a better solution, but I'm pretty happy with the result. 
+ Part 2 was a bit more tricky. I did know that the given definition of the new distance was a triangular number, for example T(2) = 1 + 2 and T(4) = 1 + 2 + 3 + 4. I couldn't think of a way to solve this analytically, so I wrote a simple brute force search, starting from the median point and then going higher. Later I replaced it with a binary search to make it more efficient. There might be a better solution, but I'm pretty happy with the result. 
 ```python
 def _solve_part2(self, parsed_data: Any) -> Any:
     low_x = np.median(parsed_data)
