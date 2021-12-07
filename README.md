@@ -4,8 +4,6 @@ This is the second year that I decided to participate in the [Advent of Code](ht
 try to also learn some new skills this year, learning more about modern Python and trying to automatically generate a
 GitHub Pages site with my solutions, which you can find [here](http://geertlitjens.nl/advent-of-code-2021/).
 
-My progress this year:
-
 <!--- advent_readme_stars table --->
 ## 2021 Results
 
