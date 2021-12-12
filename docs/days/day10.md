@@ -30,13 +30,13 @@ number of points in the end.
 > - If a chunk opens with ```{```, it must close with ```}```.
 > - If a chunk opens with ```<```, it must close with ```>```.
 > 
-> So, ```()``` is a legal chunk that contains no other chunks, as is []. More complex but valid chunks include ```([])```, ```{()()()}```, ```<([{}])>```, ```[<>({}){}[([])<>]]```, and even ```(((((((((())))))))))```.
+> So, ```()``` is a legal chunk that contains no other chunks, as is ```[]```. More complex but valid chunks include ```([])```, ```{()()()}```, ```<([{}])>```, ```[<>({}){}[([])<>]]```, and even ```(((((((((())))))))))```.
 > 
 > Some lines are incomplete, but others are corrupted. Find and discard the corrupted lines first.
 > 
 > A corrupted line is one where a chunk closes with the wrong character - that is, where the characters it opens and closes with do not form one of the four legal pairs listed above.
 > 
-> Examples of corrupted chunks include (], {()()()>, (((()))}, and <([]){()}[{}]). Such a chunk can appear anywhere within a line, and its presence causes the whole line to be considered corrupted.
+> Examples of corrupted chunks include ```(]```, ```{()()()>```, ```(((()))}```, and ```<([]){()}[{}])```. Such a chunk can appear anywhere within a line, and its presence causes the whole line to be considered corrupted.
 > 
 > For example, consider the following navigation subsystem:
 > ```
@@ -71,9 +71,6 @@ number of points in the end.
 > In the above example, an illegal ) was found twice (2*3 = 6 points), an illegal ] was found once (57 points), an illegal } was found once (1197 points), and an illegal > was found once (25137 points). So, the total syntax error score for this file is 6+57+1197+25137 = 26397 points!
 > 
 > Find the first illegal character in each corrupted line of the navigation subsystem. What is the total syntax error score for those errors?
-> 
-
-
  
 ```python
 def _parse_data(self, input_data: str) -> Any:
