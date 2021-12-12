@@ -43,3 +43,6 @@ for the different days:
 * [Day 7](./days/day7.md)
 * [Day 8](./days/day8.md)
 * [Day 9](./days/day9.md)
+* [Day 10](./days/day10.md)
+* [Day 11](./days/day11.md)
+* [Day 12](./days/day12.md)

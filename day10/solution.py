@@ -1,4 +1,9 @@
 """
+Very familiar problem, I think I saw something similar before in previous years. Initially I thought I would solve it
+with a recursive function, but soon realized that was overcomplicating the matter as every matching closing brace was
+only determined by the exact opening brace before. As such a simple stack with pop and append was enough to keep track
+of the braces as that had were part of the equation. Other than that, it is pretty straightforward, count the correct
+number of points in the end.
 """
 
 from utils import Solution
@@ -31,6 +36,9 @@ class DaySolution(Solution):
 
     def _solve_part1(self, parsed_data: Any) -> Any:
         """
+        I used a separate function because we need to use the exact same parsing behavior for parts 1 and 2. This
+        function simply puts closing braces on the stack and pops one when we encounter a closing brace. If it does not
+        match, the line is invalid and that brace is the wrong character. Then simply add up the costs.
         """
         cost = 0
         for line in parsed_data:
@@ -41,6 +49,9 @@ class DaySolution(Solution):
 
     def _solve_part2(self, parsed_data: Any) -> Any:
         """
+        Part 2 uses the same parsing function, but now we consider lines that are not invalid. Because we use a stack,
+        it is pretty straightforward to assess the missing closing braces, namely the remainder on the stack. The only
+        mistake I initially made is that I forgot to reverse the stack to get the correct score.
         """
         points = []
         for line in parsed_data:

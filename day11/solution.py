@@ -1,5 +1,8 @@
 """
-A bit easier than yesterday, I simply solved the puzzle by using np.where in a loop
+A bit easier than yesterday, I simply solved the puzzle by using np.where in a loop. The main thing is that we need to
+take into account the borders of the array and that I used a separate mask array to keep track of the octopi that
+flashed during this turn. After correctly implementing part 1, part 2 was easy, just wait until the turn that the
+tracking mask had all 1s.
 """
 
 from utils import Solution
@@ -13,6 +16,7 @@ class DaySolution(Solution):
 
     def _parse_data(self, input_data: str) -> Any:
         """
+        Data parsing was again splitting the lines and then converting them to ints and into a numpy array.
         """
         return np.array([[int(x) for x in line] for line in input_data.split("\n") if line])
 
@@ -44,11 +48,16 @@ class DaySolution(Solution):
 
     def _solve_part1(self, parsed_data: np.ndarray) -> Any:
         """
+        Simply run the _observe_octopi function for a hundred turns and use the number of flashes return value. The
+        observe_octopi function simply +1's the neighborhood of around a flashing octopus. Note that we do not need
+        to correct for the center pixel as we will reset that to zero anyway.
         """
         return self._observe_octopi(parsed_data, 100)[0]
 
     def _solve_part2(self, parsed_data: np.ndarray) -> Any:
         """
+        As noted above, simply run the function until the flash tracking array sums to 100 and return the turn that
+        happens (+1 because we start at turn 0, not 1).
         """
         return self._observe_octopi(parsed_data)[1]
 
