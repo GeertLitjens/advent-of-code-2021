@@ -49,3 +49,4 @@ for the different days:
 * [Day 13](./days/day13.md)
 * [Day 14](./days/day14.md)
 * [Day 15](./days/day15.md)
+* [Day 16](./days/day16.md)

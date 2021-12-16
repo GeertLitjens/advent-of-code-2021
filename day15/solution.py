@@ -1,4 +1,10 @@
 """
+Good old Dijkstra's algorithm, this was very familiar to me. I decided not to use the scipy implementation, but to
+implement it myself again. I had something that worked really quickly, but finding the node with minimum distance to the
+source at each step was very slow. This is when I discovered Python actually has a heapq that keeps track of the lowest
+value, which was supernice and efficient. That made my lazy solution for part 2 actually computationally tractable (I
+simply increase the grid). A nice solution would have been to simply wrap the position back to the current grid and add
+the multiplicty (e.g. 24 wraps to 4 while adding 4 to the risk). But I ran out of time and took the easy way out :).
 """
 
 from utils import Solution
@@ -13,6 +19,7 @@ class DaySolution(Solution):
 
     def _parse_data(self, input_data: str) -> Any:
         """
+        Data parsing was trivial, simply convert the text to a numpy array as done before many times.
         """
         return np.array([[int(x) for x in line] for line in input_data.split("\n") if line])
 
@@ -40,11 +47,19 @@ class DaySolution(Solution):
 
     def _solve_part1(self, parsed_data: np.ndarray) -> int:
         """
+        Simple implementation of Dijkstra's algorithm where the risk scores are considered as node distances.
+        We simply define the source and terminal nodes and a distance matrix to keep track of the distance. Last, for
+        computational efficiency, we keep use a separate set of visited nodes so we don't recompute distances
+        unnecessarily. The key thing I learned later was that Python has the heapq package, which provides you with
+        a minimum tracking queue, which helps a lot in speedily finding the current minimum distance node. The last part
+        is simply returning the distance once we reach the terminal.
         """
         return self._dijkstra(parsed_data)
 
     def _solve_part2(self, parsed_data: np.ndarray) -> int:
         """
+        Lazy solution: simply expand the grid in horizontal and vertical direction and run Dijkstra's algorithm on the
+        expanded grid. I wrap the values larger than 9.
         """
         column = np.vstack([parsed_data, parsed_data + 1, parsed_data + 2, parsed_data + 3, parsed_data + 4])
         generated_grid = np.hstack([column, column + 1, column + 2, column + 3, column + 4])
