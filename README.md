@@ -23,4 +23,5 @@ GitHub Pages site with my solutions, which you can find [here](http://geertlitje
 | [Day 12](http://geertlitjens.nl/advent-of-code-2021/days/day12.html) | ⭐ | ⭐ |
 | [Day 13](http://geertlitjens.nl/advent-of-code-2021/days/day13.html) | ⭐ | ⭐ |
 | [Day 14](http://geertlitjens.nl/advent-of-code-2021/days/day14.html) | ⭐ | ⭐ |
+| [Day 15](http://geertlitjens.nl/advent-of-code-2021/days/day15.html) | ⭐ | ⭐ |
 <!--- advent_readme_stars table --->
