@@ -7,7 +7,7 @@ import numpy as np
 
 
 class DaySolution(Solution):
-    def __init__(self, day: int = <DAY_NUMBER>, year: int = 2021) -> None:
+    def __init__(self, day: int = 20, year: int = 2021) -> None:
         super().__init__(day, year)
 
     def _parse_data(self, input_data: str) -> Any:
