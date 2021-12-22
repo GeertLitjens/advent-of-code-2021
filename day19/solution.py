@@ -14,6 +14,8 @@ FLIPS = np.array([[1, 1, 1], [1, 1, -1], [1, -1, -1], [1, -1, 1], [-1, 1, 1], [-
 class DaySolution(Solution):
     def __init__(self, day: int = 19, year: int = 2021) -> None:
         super().__init__(day, year)
+        self._paths = {}
+        self._scanner_transforms = {}
 
     def _parse_data(self, input_data: str) -> Any:
         """
@@ -25,11 +27,12 @@ class DaySolution(Solution):
             scanners.append({"coords": coords})
         return scanners
 
-    def _solve_part1(self, parsed_data: Any) -> Any:
-        """
-        """
+    def _get_transforms(self, scanners: Any) -> None:
         # Calculate distances
-        for scanner in parsed_data:
+        if self._paths and self._scanner_transforms:
+            return
+
+        for scanner in scanners:
             coords = scanner["coords"]
             distances = []
             for c_1 in coords:
@@ -43,10 +46,10 @@ class DaySolution(Solution):
 
         # Determine overlapping scanners
         matching_scanners = defaultdict(list)
-        for i, s_1 in enumerate(parsed_data):
+        for i, s_1 in enumerate(scanners):
             d_1 = s_1["distances"]
-            for j in range(i+1, len(parsed_data)):
-                s_2 = parsed_data[j]
+            for j in range(i+1, len(scanners)):
+                s_2 = scanners[j]
                 overlap = False
                 d_2 = s_2["distances"]
                 for b_1_i, b_1 in enumerate(d_1):
@@ -61,9 +64,10 @@ class DaySolution(Solution):
                             break
 
         path_tracker = []
-        paths = {}
         # Add first parts
         for scanner in matching_scanners.keys():
+            if scanner == 0:
+                continue
             current_path = [scanner]
             path_tracker.append(current_path)
         while path_tracker:
@@ -73,36 +77,35 @@ class DaySolution(Solution):
                 if option == 0:
                     scanner = current_path[0]
                     comp_path = current_path + [option]
-                    if current_path[0] in paths:
-                        if len(comp_path) < len(paths[scanner]):
-                            paths[scanner] = comp_path
+                    if current_path[0] in self._paths:
+                        if len(comp_path) < len(self._paths[scanner]):
+                            self._paths[scanner] = comp_path
                     else:
-                        paths[scanner] = comp_path
+                        self._paths[scanner] = comp_path
                 elif option not in current_path:
                     path_tracker.append(current_path + [option])
 
-        scanner_transforms = {}
-        for unmatched_scanner in sorted(paths, key=lambda x: len(paths[x])):
-            cur_path = paths[unmatched_scanner]
+        for unmatched_scanner in sorted(self._paths, key=lambda x: len(self._paths[x])):
+            cur_path = self._paths[unmatched_scanner]
             for f_s, t_s in zip(cur_path, cur_path[1:]):
-                if f"{f_s}_{t_s}" not in scanner_transforms:
+                if f"{f_s}_{t_s}" not in self._scanner_transforms:
                     c_2_i, c_1_i = [x[1:] for x in matching_scanners[f_s] if x[0] == t_s][0]
                     match_found = False
                     for swap_axis in SWAP_AXES:
                         for flip in FLIPS:
-                            trans_coords_c2 = (parsed_data[f_s]["coords"] * flip)[:, swap_axis]
-                            c_1 = parsed_data[t_s]["coords"][c_1_i]
+                            trans_coords_c2 = (scanners[f_s]["coords"] * flip)[:, swap_axis]
+                            c_1 = scanners[t_s]["coords"][c_1_i]
                             c_2 = trans_coords_c2[c_2_i]
                             offset = c_2 - c_1
                             new_coords = trans_coords_c2 - offset
                             hits = 0
-                            for c_1 in parsed_data[t_s]["coords"]:
+                            for c_1 in scanners[t_s]["coords"]:
                                 for c_2 in new_coords:
                                     if (c_1 == c_2).all():
                                         hits += 1
                                 if hits > 11:
                                     match_found = True
-                                    scanner_transforms[f"{f_s}_{t_s}"] = [swap_axis, flip, offset]
+                                    self._scanner_transforms[f"{f_s}_{t_s}"] = [swap_axis, flip, offset]
                                     break
                                 if match_found:
                                     break
@@ -110,9 +113,15 @@ class DaySolution(Solution):
                                 break
                         if match_found:
                             break
-        for scanner, path in paths.items():
+
+    def _solve_part1(self, parsed_data: Any) -> Any:
+        """
+        """
+
+        self._get_transforms(parsed_data)
+        for scanner, path in self._paths.items():
             for f_s, t_s in zip(path, path[1:]):
-                swap_axis, flip, offset = scanner_transforms[f"{f_s}_{t_s}"]
+                swap_axis, flip, offset = self._scanner_transforms[f"{f_s}_{t_s}"]
                 trans_coords = (parsed_data[scanner]["coords"] * flip)[:, swap_axis]
                 parsed_data[scanner]["coords"] = trans_coords - offset
         unique_beacons = set()
@@ -124,4 +133,17 @@ class DaySolution(Solution):
     def _solve_part2(self, parsed_data: Any) -> Any:
         """
         """
-        return 1
+        self._get_transforms(parsed_data)
+        scanner_coords = np.array([[0, 0, 0]] * (len(self._paths) + 1))
+        for scanner, path in self._paths.items():
+            for f_s, t_s in zip(path, path[1:]):
+                swap_axis, flip, offset = self._scanner_transforms[f"{f_s}_{t_s}"]
+                trans_coords = (scanner_coords[scanner] * flip)[swap_axis]
+                scanner_coords[scanner] = trans_coords - offset
+        max_manhattan = 0
+        for s_1 in scanner_coords:
+            for s_2 in scanner_coords:
+                manh_dist = np.abs(s_1 - s_2).sum()
+                if manh_dist > max_manhattan:
+                    max_manhattan = manh_dist
+        return max_manhattan
