@@ -27,5 +27,6 @@ GitHub Pages site with my solutions, which you can find [here](http://geertlitje
 | [Day 16](http://geertlitjens.nl/advent-of-code-2021/days/day16.html) | ⭐ | ⭐ |
 | [Day 17](http://geertlitjens.nl/advent-of-code-2021/days/day17.html) | ⭐ | ⭐ |
 | [Day 18](http://geertlitjens.nl/advent-of-code-2021/days/day18.html) | ⭐ | ⭐ |
-| [Day 19](http://geertlitjens.nl/advent-of-code-2021/days/day19.html) | ⭐ |   |
+| [Day 19](http://geertlitjens.nl/advent-of-code-2021/days/day19.html) | ⭐ | ⭐ |
+| [Day 20](http://geertlitjens.nl/advent-of-code-2021/days/day20.html) | ⭐ | ⭐ |
 <!--- advent_readme_stars table --->
